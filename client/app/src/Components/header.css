@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body{
+    height: 900px;
+  }
+  
+  .header {
+      width: 100%;
+    }
+    
+    .navigator ul {
+      display: flex;
+      justify-content: center;
+      height: 80px;
+      border-bottom: 1px solid black;
+    }
+    
+    .navigator li {
+      display: block;
+      list-style: none;
+      text-decoration: none;
+      padding: 10px 10px;
+      margin: 40px 8px;
+    }
+    
+    a {
+      text-decoration: none;
+    }
+    .brand {
+        margin-top: 52px;
+    }
+  
+  
+  

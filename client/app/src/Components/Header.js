@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { NavLink } from 'react-router-dom';
+import './header.css';
 
 
 
@@ -10,15 +11,17 @@ export default class Header extends Component {
         return (  
             <header className="header">
               <nav className="navigator">
+                
                 <ul>
+                <h5 className="brand">MoMo Syr</h5>
                   <li>
-                    <NavLink to="/">Hem</NavLink>
+                    <NavLink to="/">HEM</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/produkter">Produkter</NavLink>
+                    <NavLink to="/produkter">PRODUKTER</NavLink>
                   </li>
                   <li>
-                    <NavLink to="omoss">Om oss</NavLink>
+                    <NavLink to="omoss">OM OSS</NavLink>
                   </li>
                 </ul>
                 </nav>   
