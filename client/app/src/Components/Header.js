@@ -11,9 +11,7 @@ export default class Header extends Component {
         return (  
             <header className="header">
               <nav className="navigator">
-                
                 <ul>
-                <h5 className="brand">MoMo Syr</h5>
                   <li>
                     <NavLink to="/">HEM</NavLink>
                   </li>
