@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const { uuidv4 } = require('./helper-function/idGenerator')
 require('dotenv').config();
 const {
+    tableTest
   } = require("./DB/queries");
   const pool = require("./DB/index");
 
@@ -14,7 +15,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.get('/', async (req, res) => {
-    res.json('Server is on');
+    const DBdata = await pool.query(tableTest());
+    res.json(DBdata.rows);
   });
 
 
