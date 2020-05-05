@@ -1,7 +1,7 @@
-const tableTest = () => {
-    return `SELECT * FROM product1`;
+const categories = () => {
+    return `SELECT * FROM categories`;
   };
 
   module.exports = {
-    tableTest,
+    categories,
   };
