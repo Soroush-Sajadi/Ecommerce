@@ -1,0 +1,21 @@
+.category-card-wraper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.category-card {
+    transition: transform .4s;
+    margin:  100px 80px 50px 80px;
+    
+}
+.category-card:hover {
+    transform: scale(1.2);
+}
+.category-image {
+    width: 200px;
+    height: 180px;
+}
+.category-title {
+    text-align: center;
+}

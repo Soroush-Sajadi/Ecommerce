@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './Category.css'
 
 export default class Produkter extends Component {
     constructor(props) {
@@ -23,11 +24,10 @@ export default class Produkter extends Component {
 
       render() {
         return (  
-            <div>
-              <h1>Kolla vad vi har!</h1>
-              {this.state.data.map(item => <div>
-                <img src={item.image} />
-                <p>{item.category_name}</p>
+            <div className="category-card-wraper">
+              {this.state.data.map(item => <div className="category-card">
+                <img className="category-image" src={item.image} />
+                <p className="category-title">{item.category_name}</p>
               </div>
                 )}
             </div>
