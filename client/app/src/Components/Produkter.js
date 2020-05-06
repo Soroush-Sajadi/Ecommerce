@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { NavLink } from 'react-router-dom';
 import './Category.css'
 
 export default class Produkter extends Component {
@@ -22,11 +23,16 @@ export default class Produkter extends Component {
       this.getData()
     }
 
+    getName = (e) => {
+      this.props.routeName(e.target.getAttribute('attr'))
+    }
+
+
       render() {
         return (  
             <div className="category-card-wraper">
               {this.state.data.map(item => <div className="category-card">
-                <img className="category-image" src={item.image} />
+                <NavLink to={"/produkter/" + item.category_name}><img className="category-image" src={item.image} attr={item.category_name} onClick={this.getName} /></NavLink>
                 <p className="category-title">{item.category_name}</p>
               </div>
                 )}
