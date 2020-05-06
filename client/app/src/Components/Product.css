@@ -33,6 +33,7 @@ body {
   height: 100%;
   display: table;
   float: right;
+  margin-right: 4%;
 }
 
 .page-wrapper .page-inner {
