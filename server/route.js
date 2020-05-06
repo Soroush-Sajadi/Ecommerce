@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 const { uuidv4 } = require('./helper-function/idGenerator')
 require('dotenv').config();
 const {
-    categories
+    categories,
+    productInfo
   } = require("./DB/queries");
 const pool = require("./DB/index");
 const dir = path.join(__dirname, '/images/');
@@ -25,9 +26,15 @@ app.get('/', async (req, res) => {
     res.json(DBdata.rows);
   });
 
+app.get('/products/:product', async (req, res) => {
+  const product = req.params.product;
+  const DBdata = await pool.query(productInfo(product))
+  res.json(DBdata.rows);
+  });
+
 imagesName.map(item => app.get(`/images/${item}`, (req, res) => {
   res.sendFile(`${dir}/${item}.jpg`);
-  }))
+  }));
 
 module.exports = app;
 const port = 3000;
