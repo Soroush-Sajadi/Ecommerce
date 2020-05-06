@@ -28,6 +28,7 @@ app.get('/', async (req, res) => {
 
 app.get('/products/:product', async (req, res) => {
   const product = req.params.product;
+  console.log(product)
   const DBdata = await pool.query(productInfo(product))
   res.json(DBdata.rows);
   });
