@@ -1,11 +1,13 @@
 import React, {Component} from "react";
+import { NavLink } from 'react-router-dom';
 import './Product.css'
 
 export default class Produkt extends Component {
   constructor() {
     super()
     this.state = {
-      data : []
+      data : [],
+      selectedItem: null,
     }
   };
 
@@ -19,9 +21,12 @@ export default class Produkt extends Component {
   componentDidMount = () => {
     this.getData(this.props.produktName)
   }
+
+  selectedProduct = (e) => {
+    const a =(e.target.getAttribute('attr'));
+  }
     
   render() {
-    console.log(this.state.data.map(item => item))
     return ( 
       <div classNameName="card-wraper"> 
       {this.state.data.map(item =>
@@ -30,13 +35,13 @@ export default class Produkt extends Component {
             <div className="row">
               <div className="el-wrapper">
                 <div className="box-up">
-                  <img className="img" src={item.image1} alt="" />
+                  <img className="img" src={item.image1} alt={item.product_name} />
                   <div className="img-info">
                     <div className="info-inner">
-                      <span className="p-name">I feel like Pablo</span>
-                      <span className="p-company">Yeezy</span>
+                      <span className="p-name">{item.product_name}</span>
+                      <span className="p-company">MoMoSyr</span>
                     </div>
-                    <div className="a-size">Available sizes : <span className="size">S , M , L , XL</span></div>
+                    <div className="a-size"><span className="size">Size: {item.size} Color: {item.color}</span></div>
                   </div>
                 </div>
         
@@ -48,7 +53,7 @@ export default class Produkt extends Component {
                   <a className="cart" href="#">
                     <span className="price">$120</span>
                     <span className="add-to-cart">
-                      <span className="txt">Add in cart</span>
+                    <NavLink to={"/produkter/" + this.props.produktName + "/cart"}><span className="txt" attr={item} onClick={this.selectedProduct}>Add in cart</span> </NavLink>
                     </span>
                   </a>
                 </div>
@@ -58,6 +63,7 @@ export default class Produkt extends Component {
         </div>
               
         )}
+         
       </div>
     )
 }

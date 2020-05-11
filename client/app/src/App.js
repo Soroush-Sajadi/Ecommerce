@@ -5,6 +5,7 @@ import Hem from './Components/Hem';
 import Omoss from './Components/Omoss'
 import Header from './Components/Header';
 import Produkt from './Components/Produkt'
+import Cart from './Components/Cart'
 import './App.css';
 
 export default class App extends Component {
@@ -32,7 +33,8 @@ export default class App extends Component {
             <Route exact path="/" render={() => <Hem/>}/>  
             <Route exact path="/produkter" render={() => <Produkter routeName={this.getProductRoute}/>}/>
             <Route path="/omoss" render={() => <Omoss/>}/>
-            <Route path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} />} />
+            <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} />} />
+            <Route path={"/produkter/" + this.state.productRoute + "/cart"} render={() => <Cart  />} />
           </Switch>
         </>
         </BrowserRouter>
