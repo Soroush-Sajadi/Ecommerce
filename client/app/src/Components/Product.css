@@ -50,7 +50,21 @@ body {
   transform: rotateY(180deg);
 }
 
+.flip-card-back h2 {
+  margin-top: 35px;
+}
+
+.flip-card-back ul {
+ text-align: left;
+}
+
+.flip-card-back input {
+  width: 100%;
+}
+
 img {
   height: 250px;
   width: 250px;
 }
+
+

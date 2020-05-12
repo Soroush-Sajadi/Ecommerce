@@ -43,9 +43,11 @@ export default class Produkt extends Component {
             <img src={item.image1} alt="Avatar"  />
           </div>
           <div class="flip-card-back">
-            <h1>{item.product_name}</h1> 
-            <p>Color: {item.color}</p> 
-            <p>Size: {item.size}</p>
+            <h2>{item.product_name}</h2> 
+            <ul>
+            <li >Color: {item.color}</li>
+            <li>Size: {item.size}</li>
+            </ul>
             <NavLink to={"/produkter/cart"}>
               <input type="Submit" value="Add To Cart"
                 name={item.product_name}
