@@ -7,7 +7,6 @@ export default class Produkt extends Component {
     super()
     this.state = {
       data : [],
-      selectedItem: null,
     }
   };
 
@@ -23,47 +22,44 @@ export default class Produkt extends Component {
   }
 
   selectedProduct = (e) => {
-    const a =(e.target.getAttribute('attr'));
+    const selectedItem = {
+      name: e.target.getAttribute('name'),
+      color: e.target.getAttribute('color'),
+      size: e.target.getAttribute('size'),
+      image: e.target.getAttribute('image'),
+      description: e.target.getAttribute('description')
+    }
+    this.props.selectedProduct(selectedItem)
   }
     
   render() {
     return ( 
-      <div classNameName="card-wraper"> 
-      {this.state.data.map(item =>
-          <div className="container page-wrapper">
-          <div className="page-inner">
-            <div className="row">
-              <div className="el-wrapper">
-                <div className="box-up">
-                  <img className="img" src={item.image1} alt={item.product_name} />
-                  <div className="img-info">
-                    <div className="info-inner">
-                      <span className="p-name">{item.product_name}</span>
-                      <span className="p-company">MoMoSyr</span>
-                    </div>
-                    <div className="a-size"><span className="size">Size: {item.size} Color: {item.color}</span></div>
-                  </div>
-                </div>
-        
-                <div className="box-down">
-                  <div className="h-bg">
-                    <div className="h-bg-inner"></div>
-                  </div>
-        
-                  <a className="cart" href="#">
-                    <span className="price">$120</span>
-                    <span className="add-to-cart">
-                    <NavLink to={"/produkter/" + this.props.produktName + "/cart"}><span className="txt" attr={item} onClick={this.selectedProduct}>Add in cart</span> </NavLink>
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
+      <div className="wraper-card">
+      {this.state.data.map(item => 
+      <div class="flip-card">
+       
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src={item.image1} alt="Avatar"  />
+          </div>
+          <div class="flip-card-back">
+            <h1>{item.product_name}</h1> 
+            <p>Color: {item.color}</p> 
+            <p>Size: {item.size}</p>
+            <NavLink to={"/produkter/cart"}>
+              <input type="Submit" value="Add To Cart"
+                name={item.product_name}
+                color={item.color}
+                size={item.size}
+                image={item.image1}
+                description={item.description}
+                onClick={this.selectedProduct}/>
+            </NavLink>
           </div>
         </div>
-              
-        )}
-         
+       
+      </div>
+      )}
       </div>
     )
 }

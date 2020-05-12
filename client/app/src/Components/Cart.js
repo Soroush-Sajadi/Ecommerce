@@ -16,7 +16,9 @@ export default class Produkter extends Component {
       render() {
         return (  
             <div className="category-card-wraper">
-              <h1>Cart</h1>
+              <h1>{this.props.cartInfo.name}</h1>
+              <h2>{this.props.cartInfo.color}</h2>
+              <h3>{this.props.cartInfo.description}</h3>
             </div>
         )
     }

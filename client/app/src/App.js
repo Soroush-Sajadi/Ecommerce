@@ -13,12 +13,17 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productRoute: null
+      productRoute: null,
+      selectedProductInfo :[]
     }
   }
 
   getProductRoute = (childData) => {
     this.setState({productRoute: childData})
+  }
+
+  getSelectedProduct = (childData) => {
+    this.setState({selectedProductInfo: childData})
   }
 
   render() {
@@ -33,8 +38,8 @@ export default class App extends Component {
             <Route exact path="/" render={() => <Hem/>}/>  
             <Route exact path="/produkter" render={() => <Produkter routeName={this.getProductRoute}/>}/>
             <Route path="/omoss" render={() => <Omoss/>}/>
-            <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} />} />
-            <Route path={"/produkter/" + this.state.productRoute + "/cart"} render={() => <Cart  />} />
+            <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} />} />
+            <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} />} />
           </Switch>
         </>
         </BrowserRouter>
