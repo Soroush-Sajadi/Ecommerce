@@ -47,8 +47,10 @@ export default class Produkt extends Component {
             <ul>
             <li >Color: {item.color}</li>
             <li>Size: {item.size}</li>
+            <li>Price: 100 kr</li>
+            <li className="description">{item.description} </li>
             </ul>
-            <NavLink to={"/produkter/cart"}>
+            
               <input type="Submit" value="Add To Cart"
                 name={item.product_name}
                 color={item.color}
@@ -56,12 +58,14 @@ export default class Produkt extends Component {
                 image={item.image1}
                 description={item.description}
                 onClick={this.selectedProduct}/>
-            </NavLink>
           </div>
         </div>
        
       </div>
       )}
+      <NavLink to={"/produkter/cart"}>
+        <input type="submit" value="Till Kassan"  /> 
+      </NavLink>
       </div>
     )
 }
