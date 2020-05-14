@@ -63,9 +63,11 @@ export default class Produkt extends Component {
        
       </div>
       )}
+      <div>
       <NavLink to={"/produkter/cart"}>
-        <input type="submit" value="Till Kassan"  /> 
+        <input className="tillKassan" type="submit" value="Till Kassan"  /> 
       </NavLink>
+      </div>
       </div>
     )
 }

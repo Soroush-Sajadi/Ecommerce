@@ -14,7 +14,7 @@ body {
   width: 250px;
   height: 250px;
   perspective: 1000px;
-  margin: 0 3% 3% 3%;
+  margin: 0 0  3% 3%;
 }
 
 .flip-card-inner {
@@ -69,6 +69,11 @@ img {
 
 .description {
   font-size: 10px;
+}
+
+.tillKassan {
+  margin-top: 269px;
+  margin-left: -67px;
 }
 
 

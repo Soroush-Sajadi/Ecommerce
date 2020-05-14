@@ -10,7 +10,7 @@
     
 }
 .category-card:hover {
-    transform: scale(1.2);
+    transform: scale(1.4);
 }
 .category-image {
     width: 200px;
@@ -19,3 +19,4 @@
 .category-title {
     text-align: center;
 }
+
