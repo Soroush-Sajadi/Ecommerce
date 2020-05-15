@@ -23,11 +23,15 @@ export default class App extends Component {
   }
 
   getSelectedProduct = (childData) => {
-    this.setState({selectedProductInfo: childData})
+    this.setState(state => {
+      const selectedProductInfo = state.selectedProductInfo.concat(childData)
+      return {
+        selectedProductInfo
+      };
+    }) 
   }
-
+  
   render() {
-    console.log(this.state.selectedProductInfo)
     return (
       <div className="App">
         <BrowserRouter>

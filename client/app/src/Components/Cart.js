@@ -14,13 +14,16 @@ export default class Produkter extends Component {
 
 
       render() {
-        console.log(this.props.cartInfo.name)
-        return (  
+        return ( 
+          <div>
+          {this.props.cartInfo.map(item => 
             <div className="category-card-wraper">
-              <h1>{this.props.cartInfo.name}</h1>
-              <h2>{this.props.cartInfo.color}</h2>
-              <h3>{this.props.cartInfo.description}</h3>
+              <h1>{item.name}</h1>
+              <h2>{item.color}</h2>
+              <h3>{item.description}</h3>
             </div>
+            )} 
+          </div>  
         )
     }
 }
