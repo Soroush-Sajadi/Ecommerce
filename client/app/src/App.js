@@ -22,13 +22,17 @@ export default class App extends Component {
     this.setState({productRoute: childData})
   }
 
-  getSelectedProduct = (childData) => {
+  getSelectedProduct = (childData, cartStatus) => {
+    if (cartStatus === 'Add to the cart') {
     this.setState(state => {
       const selectedProductInfo = state.selectedProductInfo.concat(childData)
       return {
         selectedProductInfo
       };
     }) 
+  } else {
+    
+  }
   }
   
   render() {
