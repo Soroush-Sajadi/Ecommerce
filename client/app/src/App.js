@@ -17,13 +17,13 @@ export default class App extends Component {
       selectedProductInfo :[]
     }
   }
+ 
 
   getProductRoute = (childData) => {
     this.setState({productRoute: childData})
   }
 
   getSelectedProduct = (childData, cartStatus, id ) => {
-    console.log(cartStatus)
     if (cartStatus === 'Add to the cart') {
     this.setState(state => {
       const selectedProductInfo = state.selectedProductInfo.concat(childData)
@@ -32,21 +32,13 @@ export default class App extends Component {
       };
     }) 
   } else {
-    this.setState(state => {
-      console.log('im here')
-      const selectedProductInfo = state.selectedProductInfo.map((item, i) => {
-        if (item.id === id ) {
-          this.state.selectedProductInfo.splice(i, 1);
-        }
-      } )
-      return {
-        selectedProductInfo
-      };
-    }) 
+    let filteredArray = this.state.selectedProductInfo.filter(item => item.id !== id)
+    this.setState({selectedProductInfo: filteredArray});
   }
   }
 
   render() {
+    console.log(this.state.selectedProductInfo)
     return (
       <div className="App">
         <BrowserRouter>
