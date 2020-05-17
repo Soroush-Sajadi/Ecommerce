@@ -22,7 +22,8 @@ export default class App extends Component {
     this.setState({productRoute: childData})
   }
 
-  getSelectedProduct = (childData, cartStatus) => {
+  getSelectedProduct = (childData, cartStatus, id ) => {
+    console.log(cartStatus)
     if (cartStatus === 'Add to the cart') {
     this.setState(state => {
       const selectedProductInfo = state.selectedProductInfo.concat(childData)
@@ -31,10 +32,20 @@ export default class App extends Component {
       };
     }) 
   } else {
-    
+    this.setState(state => {
+      console.log('im here')
+      const selectedProductInfo = state.selectedProductInfo.map((item, i) => {
+        if (item.id === id ) {
+          this.state.selectedProductInfo.splice(i, 1);
+        }
+      } )
+      return {
+        selectedProductInfo
+      };
+    }) 
   }
   }
-  
+
   render() {
     return (
       <div className="App">
