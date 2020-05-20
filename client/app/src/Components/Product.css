@@ -43,15 +43,18 @@ body {
   background-color: #bbb;
   color: black;
 }
+ul {
+  list-style-type: none;
+}
 
 .flip-card-back {
-  background-color: #2980b9;
-  color: white;
+  background-color: white;
+  color: black;
   transform: rotateY(180deg);
 }
 
 .flip-card-back h2 {
-  margin-top: 35px;
+  margin-top: 20px;
 }
 
 .flip-card-back ul {
@@ -59,7 +62,9 @@ body {
 }
 
 .flip-card-back input {
-  width: 100%;
+  width: 80%;
+  margin-top: 18%;
+  height: 30px;
 }
 
 img {
@@ -70,10 +75,29 @@ img {
 .description {
   font-size: 10px;
 }
-
 .tillKassan {
-  margin-top: 269px;
-  margin-left: -67px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+    
+}
+.tillKassan li {
+  color: black;
+  border: 1px solid;
+  padding: 8px;
+  border-radius: 18px;
+  background: greenyellow;
+  text-align: center;
+  margin-left: 26%;
 }
 
-
+.inputAddToCart {
+  background-color: red;
+}
+.inputRemoveFromCart {
+  background-color: greenyellow;
+}
+.kassan {
+  
+}

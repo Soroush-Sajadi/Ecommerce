@@ -8,11 +8,13 @@ const { uuidv4 } = require('./helper-function/idGenerator')
 require('dotenv').config();
 const {
     categories,
-    productInfo
+    productInfo,
+    allProducts
   } = require("./DB/queries");
 const pool = require("./DB/index");
 const dir = path.join(__dirname, '/images/');
 imagesName = ['amningssjalar', 'babynest', 'barnklader', 'filtar', 'mossor', 'pannband', 'tygkasar', 'yogapasar'];
+categoryName = ['amningssjalar', 'babynest', 'barnkläder', 'filtar', 'mössor', 'pannband', 'tygkasar', 'yogapåsar'];
 
 app.use(express.static(dir));
 app.use(cors());
@@ -25,6 +27,16 @@ app.get('/', async (req, res) => {
     const DBdata = await pool.query(categories());
     res.json(DBdata.rows);
   });
+
+//app.get('/products', async (req, res) => {
+  //let result = [];
+  //categoryName.map(async item => {
+    //let DBdata = await pool.query(productInfo(item));
+    //result.push(DBdata.rows);
+  //})
+  //console.log(result)
+  //res.json(result)
+//})  
 
 app.get('/products/:product', async (req, res) => {
   const product = req.params.product;

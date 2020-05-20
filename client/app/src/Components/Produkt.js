@@ -6,18 +6,19 @@ export default class Produkt extends Component {
   constructor() {
     super()
     this.state = {
-      data : [],
+      data : [] ,
       clicked: 'Remove from cart',
+      localData: [],
     }
   };
 
   getData = async (name) => {
-    await fetch(`http://localhost:3000/products/${name}`) 
-      .then(response => response.json())
-      .then(data => { this.setState( { data } )
+      await fetch(`http://localhost:3000/products/${name}`) 
+        .then(response => response.json())
+        .then(data => { this.setState( { data } )
       })
-      this.addStatus();
-  };
+    this.addStatus();
+  }
 
   addStatus = () => {
     for (let i in this.state.data) {
@@ -25,18 +26,32 @@ export default class Produkt extends Component {
     }
   }
 
+  saveToLocalStorage = (name) => {
+    return window.localStorage.setItem(`${name}`, JSON.stringify(this.state.data))
+  }
+
+  getTheLocalData = (name) => {
+    return this.setState({ data: JSON.parse(window.localStorage.getItem(`${name}`))});
+  }
+
   changingStatus = (id) => {
     for (let i in this.state.data) {
       if (id === this.state.data[i].id) {
-      this.setState ( ({clicked: this.state.data[i].checked = !this.state.data[i].checked}));
+      this.setState( ({clicked: this.state.data[i].checked = !this.state.data[i].checked}));
       }
+    }
+    this.saveToLocalStorage(this.props.produktName)
+  }
+
+  componentDidMount = (prevProps) => {
+    if (!(JSON.parse(window.localStorage.getItem(`${this.props.produktName}`)))) {
+      this.getData(this.props.produktName);
+    } else {
+      this.getTheLocalData(this.props.produktName);
     }
   }
 
-  componentDidMount = () => {
-    this.getData(this.props.produktName)
-  }
-
+  
   sendingProductToCart = (selectedItem, cartStatus, id ) => {
     return this.props.selectedProduct(selectedItem, cartStatus, id);
   }
@@ -58,6 +73,7 @@ export default class Produkt extends Component {
 
   render() {
     return ( 
+      <>
       <div className="wraper-card">
       {this.state.data.map(item => 
       <div className="flip-card">
@@ -74,7 +90,7 @@ export default class Produkt extends Component {
               <li className="description">{item.description} </li>
             </ul>
 
-              <input type="Submit" value={item.checked === false ? 'Add to the cart' : 'Remove from cart' }
+              <input className={item.checked === false ? 'inputAddToCart' : 'inputRemoveFromCart'} type="Submit" value={item.checked === false ? 'Add to the cart' : 'Remove from cart' }
                 name={item.product_name}
                 id={item.id}
                 checked={item.checked}
@@ -87,12 +103,19 @@ export default class Produkt extends Component {
         </div>
       </div>
       )}
+      </div>
       <div>
-      <NavLink to={"/produkter/cart"}>
-         <input className="tillKassan" type="submit" value="Till Kassan"  /> 
-      </NavLink>
+        <ul className="tillKassan">
+          <li>
+            <NavLink className="kassan" to={"/produkter/"}> Till backa </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/produkter/cart"}> Till Kassan </NavLink>
+          </li>
+      </ul>
       </div>
-      </div>
+      
+      </>
     )
 }
 }

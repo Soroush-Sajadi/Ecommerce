@@ -6,7 +6,9 @@ const productInfo = (productName) => {
   return `SELECT * FROM ${productName}`
 }
 
+
+
   module.exports = {
     categories,
-    productInfo
+    productInfo,
   };

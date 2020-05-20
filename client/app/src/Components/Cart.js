@@ -10,20 +10,20 @@ export default class Produkter extends Component {
       }
     }
 
-   
 
 
-      render() {
-        return ( 
-          <div>
-          {this.props.cartInfo.map(item => 
-            <div className="category-card-wraper">
-              <h1>{item.name}</h1>
-              <h2>{item.color}</h2>
-              <h3>{item.description}</h3>
-            </div>
-            )} 
-          </div>  
-        )
-    }
+    render() {
+      return ( 
+        <div>
+        {this.props.cartInfo.map(item => 
+          <div className="category-card-wraper">
+            <h1>{item.name}</h1>
+            <h2>{item.color}</h2>
+            <h3>{item.description}</h3>
+          </div>
+          )} 
+          {this.props.cartInfo.length !== 0 ? (<NavLink to={"/produkter/"+ this.props.cartInfo[ (this.props.cartInfo.length) - 1 ].name }> tillbacks</NavLink>):null}
+        </div>  
+      )
+  }
 }
