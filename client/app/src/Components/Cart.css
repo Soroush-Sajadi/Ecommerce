@@ -1,0 +1,26 @@
+.cart-wraper {
+    display: flex;
+    flex-wrap: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 136px;
+    width: 65%;
+}
+.cart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 52px;
+    border: 1px solid black;
+}
+
+.cart img {
+    width: 35%;
+    height: 136px;
+}
+.wraper {
+    padding: 0 12%;
+}
+.li-desc {
+    font-size: 12px;
+}

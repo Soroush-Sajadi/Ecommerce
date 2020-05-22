@@ -27,7 +27,7 @@ export default class Produkt extends Component {
   }
 
   saveToLocalStorage = (name) => {
-    return window.localStorage.setItem(`${name}`, JSON.stringify(this.state.data))
+    window.localStorage.setItem(`${name}`, JSON.stringify(this.state.data))
   }
 
   getTheLocalData = (name) => {
