@@ -14,7 +14,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       productRoute: null,
-      selectedProductInfo :[]
+      selectedProductInfo :[],
     }
   }
  
@@ -37,6 +37,12 @@ export default class App extends Component {
   }
   }
 
+  deleteTheProps = (childData) => {
+    this.setState({ selectedProductInfo: childData })
+  }
+
+  
+
   render() {
     return (
       <div className="App">
@@ -50,7 +56,7 @@ export default class App extends Component {
             <Route exact path="/produkter" render={() => <Produkter routeName={this.getProductRoute}/>}/>
             <Route path="/omoss" render={() => <Omoss/>}/>
             <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} />} />
-            <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} />} />
+            <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} />} />
           </Switch>
         </>
         </BrowserRouter>

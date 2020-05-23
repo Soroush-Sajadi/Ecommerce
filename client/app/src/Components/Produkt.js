@@ -43,11 +43,12 @@ export default class Produkt extends Component {
     this.saveToLocalStorage(this.props.produktName)
   }
 
+
   componentDidMount = (prevProps) => {
     if (!(JSON.parse(window.localStorage.getItem(`${this.props.produktName}`)))) {
       this.getData(this.props.produktName);
     } else {
-      this.getTheLocalData(this.props.produktName);
+        this.getTheLocalData(this.props.produktName);
     }
   }
 
