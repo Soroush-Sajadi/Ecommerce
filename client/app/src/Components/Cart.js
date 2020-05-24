@@ -92,10 +92,10 @@ export default class Produkter extends Component {
             <div className="product-details">
               <h1><strong><span className="item-quantity"></span>{item.name}</strong></h1>
               <p><strong>Navy, Size 18</strong></p>
-              <p>Product Code - 232321939</p>
+              <p>Product Code - {item.id}</p>
             </div>
           </div>
-          <div className="price">26.00</div>
+          <div className="price">{item.price}</div>
           <div className="quantity">
             <input type="number" value="1" min="1" className="quantity-field"/>
           </div>

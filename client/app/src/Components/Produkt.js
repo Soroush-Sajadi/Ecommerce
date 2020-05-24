@@ -62,6 +62,7 @@ export default class Produkt extends Component {
       id : e.target.getAttribute('id'),
       name: e.target.getAttribute('name'),
       color: e.target.getAttribute('color'),
+      price: e.target.getAttribute('price'),
       size: e.target.getAttribute('size'),
       image: e.target.getAttribute('image'),
       description: e.target.getAttribute('description'),
@@ -73,6 +74,7 @@ export default class Produkt extends Component {
   }
 
   render() {
+    console.log(this.state.data)
     return ( 
       <>
       <div className="wraper-card">
@@ -87,7 +89,7 @@ export default class Produkt extends Component {
             <ul>
               <li >Color: {item.color}</li>
               <li>Size: {item.size}</li>
-              <li>Price: 100 kr</li>
+              <li>Price: {item.price}</li>
               <li className="description">{item.description} </li>
             </ul>
 
@@ -95,6 +97,7 @@ export default class Produkt extends Component {
                 name={item.product_name}
                 id={item.id}
                 checked={item.checked}
+                price={item.price}
                 color={item.color}
                 size={item.size}
                 image={item.image1}
