@@ -8,18 +8,16 @@ export default class Produkter extends Component {
       this.state = {
         dataFromProduct : [],
         localData: [],
+        totalPrice: []
 
       }
     }
     
     componentDidMount = () => {
       if ( this.props.cartInfo.length === 0 ) {
-        console.log('from storage');
         this.getFromLocalStorage();
-      } else {
-        console.log('from props ')
+      } 
       this.saveInState();
-      }
     }
 
     
@@ -32,7 +30,34 @@ export default class Produkter extends Component {
         localData
       };
     }) 
+    this.addQuantity()
+   }
 
+    addQuantity = () => {
+     setTimeout( ()=> {
+      if (this.state.localData.length > 0 ) {
+        for (let i in this.state.localData) {
+        this.setState( {quantity: this.state.localData[i].quantity = 1})
+      }
+    }
+  }, 250 )
+     }
+
+    changeQuantity = (id, quantityNew) => {
+      for (let i in this.state.localData) {
+        if (id === this.state.localData[i].id) {
+        this.setState( ({quantity: this.state.localData[i].quantity = quantityNew}));
+        }
+      }
+    }
+    
+    getQuantity = (e) => {
+      const newQuantity = document.getElementsByClassName(e.target.className)[0].value
+      const id = e.target.getAttribute('idd');
+      this.changeQuantity(id, newQuantity)
+   }
+
+   totalPrice = () => {
    }
 
    saveInLocalStorage = (data) => {
@@ -51,7 +76,6 @@ export default class Produkter extends Component {
     await this.setState({ dataFromProduct: JSON.parse(window.localStorage.getItem(`${name}`))});
     for (let i in this.state.dataFromProduct) {
       if (id === this.state.dataFromProduct[i].id) {
-        console.log('her---')
       this.setState( ({clicked: this.state.dataFromProduct[i].checked = !this.state.dataFromProduct[i].checked}));
       }
     }
@@ -64,8 +88,6 @@ export default class Produkter extends Component {
       let filteredArray = this.state.localData.filter(item => item.id !== e.target.getAttribute('id'))
       this.setState({localData: filteredArray});
       this.saveInLocalStorage(filteredArray);
-      this.props.deleteProps([]);
-      //console.log(e.target.getAttribute('id'), e.target.getAttribute('name'))
       this.changingStatus( e.target.getAttribute('id'), e.target.getAttribute('name') )
     }
     render() {
@@ -87,7 +109,7 @@ export default class Produkter extends Component {
         <div className="basket-product">
           <div className="item">
             <div className="product-image">
-              <img src="http://placehold.it/120x166" alt="Placholder Image 2" className="product-frame"/>
+              <img src={item.image} alt="Placholder Image 2" className="product-frame"/>
             </div>
             <div className="product-details">
               <h1><strong><span className="item-quantity"></span>{item.name}</strong></h1>
@@ -97,9 +119,9 @@ export default class Produkter extends Component {
           </div>
           <div className="price">{item.price}</div>
           <div className="quantity">
-            <input type="number" value="1" min="1" className="quantity-field"/>
+            <input type="number" onClick={this.getQuantity} price={item.price} idd={item.id} min="1"  max="99" id ="quantity-field"  className={item.id} />
           </div>
-          <div className="subtotal">104.00</div>
+          <div className="subtotal" >{Number(item.price.split(' ')[0]) * item.quantity}</div>
           <div className="remove">
             <button  id={item.id} name={item.name} onClick={this.removeFromCart}>Remove</button>
           </div>

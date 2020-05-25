@@ -74,7 +74,6 @@ export default class Produkt extends Component {
   }
 
   render() {
-    console.log(this.state.data)
     return ( 
       <>
       <div className="wraper-card">

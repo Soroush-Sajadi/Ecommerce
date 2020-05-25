@@ -58,6 +58,7 @@ img,
 .basket-labels,
 .basket-product {
   width: 100%;
+  
 }
 
 input,
@@ -227,7 +228,7 @@ li.subtotal:before {
   box-sizing: border-box;
 }
 
-.quantity-field {
+#quantity-field {
   background-color: #ccc;
   border: 1px solid #aaa;
   border-radius: 4px;
@@ -368,7 +369,7 @@ aside {
     text-align: center;
     width: 34%;
   }
-  .quantity-field {
+  #quantity-field {
     float: none;
   }
   .remove {
@@ -384,6 +385,10 @@ aside {
     margin-top: 1.25rem;
     position: relative;
   }
+}
+
+img {
+    height: 140px;
 }
 
 @media screen and (min-width: 641px) and (max-width: 960px) {
