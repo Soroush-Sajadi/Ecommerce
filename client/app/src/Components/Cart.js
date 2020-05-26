@@ -8,7 +8,8 @@ export default class Produkter extends Component {
       this.state = {
         dataFromProduct : [],
         localData: [],
-        totalPrice: []
+        totalPrice: [],
+        total: null
 
       }
     }
@@ -19,8 +20,6 @@ export default class Produkter extends Component {
       } 
       this.saveInState();
     }
-
-    
 
    saveInState =  () => {
     this.setState(state => {
@@ -40,25 +39,74 @@ export default class Produkter extends Component {
         this.setState( {quantity: this.state.localData[i].quantity = 1})
       }
     }
-  }, 250 )
+  }, 250 );
+      setTimeout(() => {
+        if (this.state.totalPrice.length === 0) {
+          this.prices(this.state.localData)
+          this.totalPricesCalculation(this.state.totalPrice)
+        }
+      },250)
+      
      }
 
-    changeQuantity = (id, quantityNew) => {
+     
+
+    changeQuantity = async(id, quantityNew) => {
       for (let i in this.state.localData) {
         if (id === this.state.localData[i].id) {
         this.setState( ({quantity: this.state.localData[i].quantity = quantityNew}));
         }
       }
+      await this.prices(this.state.localData)
+      await this.totalPricesCalculation(this.state.totalPrice)
+
+    }
+
+    //getIndex = (id, data,price) => {
+      //let array = [...this.state.totalPrice]
+      //data.map(item => {
+        //if(id === item.id) {
+          //const index = data.indexOf(item);
+          //array.splice(index, 0, price)
+            //this.setState({ totalPrice: array })
+        //}
+      //})
+    //}
+
+    prices = (array) => {
+      array.map(item => {
+        const price = item.price.split(' ')[0] * Number(item.quantity)
+        this.setState(state => {
+          const totalPrice = state.totalPrice.concat(price)
+          return {
+            totalPrice
+          };
+        }) 
+      })
+    }
+
+    totalPricesCalculation = (array) => {
+      let sum = 0;
+      for (let i = array.length - this.state.localData.length; i < array.length; i += 1  ) {
+        sum += array[i];
+        this.setState({total: sum});
+      }
     }
     
-    getQuantity = (e) => {
-      const newQuantity = document.getElementsByClassName(e.target.className)[0].value
-      const id = e.target.getAttribute('idd');
-      this.changeQuantity(id, newQuantity)
-   }
+  getQuantity = (e) => {
+    const newQuantity = document.getElementsByClassName(e.target.className)[0].value
+    const id = e.target.getAttribute('idd');
+    const price = Number(e.target.getAttribute('price').split(' ')[0]);
+    const totalPriceCart = price * newQuantity;
+    //this.setState({ totalPrice: this.state.totalPrice.splice(0, 0, totalPriceCart) }) 
+    
+    //this.getIndex(id, this.state.localData, totalPriceCart);
 
-   totalPrice = () => {
-   }
+    this.changeQuantity(id, newQuantity)
+  }
+
+  totalPrice = () => {
+  }
 
    saveInLocalStorage = (data) => {
       window.localStorage.setItem(`Cart`, JSON.stringify(data))
@@ -80,7 +128,6 @@ export default class Produkter extends Component {
       }
     }
     this.saveInProductStorage(name, this.state.dataFromProduct);
-
   }
 
     removeFromCart = (e) => {
@@ -90,6 +137,7 @@ export default class Produkter extends Component {
       this.saveInLocalStorage(filteredArray);
       this.changingStatus( e.target.getAttribute('id'), e.target.getAttribute('name') )
     }
+
     render() {
       return ( 
       <main>
@@ -121,7 +169,7 @@ export default class Produkter extends Component {
           <div className="quantity">
             <input type="number" onClick={this.getQuantity} price={item.price} idd={item.id} min="1"  max="99" id ="quantity-field"  className={item.id} />
           </div>
-          <div className="subtotal" >{Number(item.price.split(' ')[0]) * item.quantity}</div>
+          <div className="subtotal" >{Number(item.price.split(' ')[0]) * item.quantity} kr</div>
           <div className="remove">
             <button  id={item.id} name={item.name} onClick={this.removeFromCart}>Remove</button>
           </div>
@@ -135,7 +183,7 @@ export default class Produkter extends Component {
           <div className="summary-total-items"><span className="total-items"></span> Items in your Bag</div>
           <div className="summary-subtotal">
             <div className="subtotal-title">Subtotal</div>
-            <div className="subtotal-value final-value" id="basket-subtotal">130.00</div>
+            <div className="subtotal-value final-value" id="basket-subtotal">{this.state.total}</div>
             <div className="summary-promo hide">
               <div className="promo-title">Promotion</div>
               <div className="promo-value final-value" id="basket-promo"></div>
@@ -152,7 +200,7 @@ export default class Produkter extends Component {
           </div>
           <div className="summary-total">
             <div className="total-title">Total</div>
-            <div className="total-value final-value" id="basket-total">130.00</div>
+            <div className="total-value final-value" id="basket-total">{this.state.total}</div>
           </div>
           <div className="summary-checkout">
             <button className="checkout-cta">Go to Secure Checkout</button>
