@@ -17,20 +17,21 @@ export default class Produkter extends Component {
     componentDidMount = () => {
       if ( this.props.cartInfo.length === 0 ) {
         this.getFromLocalStorage();
-      } 
+      }else {
       this.saveInState();
+      }
     }
 
-   saveInState =  () => {
-    this.setState(state => {
-      const localData = state.localData.concat(this.props.cartInfo)
-      this.saveInLocalStorage(localData)
-      return {
-        localData
-      };
-    }) 
-    this.addQuantity()
-   }
+    saveInState =  () => {
+      this.setState(state => {
+        const localData = state.localData.concat(this.props.cartInfo)
+        this.saveInLocalStorage(localData)
+        return {
+          localData
+        };
+      })
+      this.addQuantity()
+    }
 
     addQuantity = () => {
      setTimeout( ()=> {
@@ -39,7 +40,7 @@ export default class Produkter extends Component {
         this.setState( {quantity: this.state.localData[i].quantity = 1})
       }
     }
-  }, 250 );
+    }, 250 );
       setTimeout(() => {
         if (this.state.totalPrice.length === 0) {
           this.prices(this.state.localData)
@@ -49,8 +50,6 @@ export default class Produkter extends Component {
       
      }
 
-     
-
     changeQuantity = async(id, quantityNew) => {
       for (let i in this.state.localData) {
         if (id === this.state.localData[i].id) {
@@ -59,19 +58,7 @@ export default class Produkter extends Component {
       }
       await this.prices(this.state.localData)
       await this.totalPricesCalculation(this.state.totalPrice)
-
     }
-
-    //getIndex = (id, data,price) => {
-      //let array = [...this.state.totalPrice]
-      //data.map(item => {
-        //if(id === item.id) {
-          //const index = data.indexOf(item);
-          //array.splice(index, 0, price)
-            //this.setState({ totalPrice: array })
-        //}
-      //})
-    //}
 
     prices = (array) => {
       array.map(item => {
@@ -137,15 +124,13 @@ export default class Produkter extends Component {
       this.saveInLocalStorage(filteredArray);
       this.changingStatus( e.target.getAttribute('id'), e.target.getAttribute('name') )
       this.setState({total: this.state.total - (e.target.getAttribute('price').split(' ')[0] * Number(e.target.getAttribute('quantity')))})
+      this.props.deleteProps(filteredArray)
     }
 
     render() {
       return ( 
       <main>
-        
-        
       <div className="basket">
-       
         <div className="basket-labels">
           <ul>
             <li className="item item-heading">Item</li>
@@ -177,7 +162,6 @@ export default class Produkter extends Component {
         </div>
         </div>
       )}
-        
       </div>
       <aside>
         <div className="summary">
@@ -190,7 +174,6 @@ export default class Produkter extends Component {
               <div className="promo-value final-value" id="basket-promo"></div>
             </div>
           </div>
-          
           <div className="summary-total">
             <div className="total-title">Total</div>
             <div className="total-value final-value" id="basket-total">{this.state.localData.length === 0 ? 0 :this.state.total}</div>
@@ -202,9 +185,7 @@ export default class Produkter extends Component {
           </div>
         </div>
       </aside>
-      
   </main>
-        
       )
   }
 }
