@@ -6,6 +6,7 @@ import Omoss from './Components/Omoss'
 import Header from './Components/Header';
 import Produkt from './Components/Produkt'
 import Cart from './Components/Cart'
+import Checkout from './Components/Checkout';
 import './App.css';
 
 export default class App extends Component {
@@ -57,6 +58,7 @@ export default class App extends Component {
             <Route path="/omoss" render={() => <Omoss/>}/>
             <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} />} />
             <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} />} />
+            <Route path={"/produkter/checkout"} render={() => <Checkout />} />
           </Switch>
         </>
         </BrowserRouter>

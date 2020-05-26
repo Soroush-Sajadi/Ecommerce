@@ -37,7 +37,7 @@ h1 {
   padding: 0;
 }
 
-input,
+#quantity-field,
 button {
   border: 0 none;
   outline: 0 none;
@@ -194,6 +194,7 @@ li.subtotal:before {
   float: none;
   text-decoration: underline;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .item-heading {
@@ -326,6 +327,7 @@ aside {
   text-transform: uppercase;
   padding: 0.625rem 0;
   width: 100%;
+  cursor: pointer;
 }
 
 .summary-delivery-selection {

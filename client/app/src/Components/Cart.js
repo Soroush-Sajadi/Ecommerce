@@ -130,12 +130,13 @@ export default class Produkter extends Component {
     this.saveInProductStorage(name, this.state.dataFromProduct);
   }
 
-    removeFromCart = (e) => {
+    removeFromCart = async (e) => {
       this.setState({ localData: JSON.parse(window.localStorage.getItem(`Cart`))});
       let filteredArray = this.state.localData.filter(item => item.id !== e.target.getAttribute('id'))
       this.setState({localData: filteredArray});
       this.saveInLocalStorage(filteredArray);
       this.changingStatus( e.target.getAttribute('id'), e.target.getAttribute('name') )
+      this.setState({total: this.state.total - (e.target.getAttribute('price').split(' ')[0] * Number(e.target.getAttribute('quantity')))})
     }
 
     render() {
@@ -171,7 +172,7 @@ export default class Produkter extends Component {
           </div>
           <div className="subtotal" >{Number(item.price.split(' ')[0]) * item.quantity} kr</div>
           <div className="remove">
-            <button  id={item.id} name={item.name} onClick={this.removeFromCart}>Remove</button>
+            <button  id={item.id} name={item.name} quantity={item.quantity} price={item.price} onClick={this.removeFromCart}>Remove</button>
           </div>
         </div>
         </div>
@@ -189,21 +190,15 @@ export default class Produkter extends Component {
               <div className="promo-value final-value" id="basket-promo"></div>
             </div>
           </div>
-          <div className="summary-delivery">
-            <select name="delivery-collection" className="summary-delivery-selection">
-                <option value="0" selected="selected">Select Collection or Delivery</option>
-              <option value="collection">Collection</option>
-              <option value="first-className">Royal Mail 1st className</option>
-              <option value="second-className">Royal Mail 2nd className</option>
-              <option value="signed-for">Royal Mail Special Delivery</option>
-            </select>
-          </div>
+          
           <div className="summary-total">
             <div className="total-title">Total</div>
             <div className="total-value final-value" id="basket-total">{this.state.localData.length === 0 ? 0 :this.state.total}</div>
           </div>
           <div className="summary-checkout">
-            <button className="checkout-cta">Go to Secure Checkout</button>
+          <NavLink to={"/produkter/checkout"}> 
+            <button className="checkout-cta">Checkout</button>
+          </NavLink>  
           </div>
         </div>
       </aside>

@@ -65,6 +65,7 @@ ul {
   width: 80%;
   margin-top: 18%;
   height: 30px;
+  margin-left: 25px;
 }
 
 img {
@@ -94,9 +95,11 @@ img {
 
 .inputAddToCart {
   background-color: red;
+
 }
 .inputRemoveFromCart {
   background-color: greenyellow;
+ 
 }
 .kassan {
   
