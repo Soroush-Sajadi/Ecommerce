@@ -183,7 +183,7 @@ export default class Produkter extends Component {
           <div className="summary-total-items"><span className="total-items"></span> Items in your Bag</div>
           <div className="summary-subtotal">
             <div className="subtotal-title">Subtotal</div>
-            <div className="subtotal-value final-value" id="basket-subtotal">{this.state.total}</div>
+            <div className="subtotal-value final-value" id="basket-subtotal">{ this.state.localData.length === 0 ? 0 :this.state.total }</div>
             <div className="summary-promo hide">
               <div className="promo-title">Promotion</div>
               <div className="promo-value final-value" id="basket-promo"></div>
@@ -200,7 +200,7 @@ export default class Produkter extends Component {
           </div>
           <div className="summary-total">
             <div className="total-title">Total</div>
-            <div className="total-value final-value" id="basket-total">{this.state.total}</div>
+            <div className="total-value final-value" id="basket-total">{this.state.localData.length === 0 ? 0 :this.state.total}</div>
           </div>
           <div className="summary-checkout">
             <button className="checkout-cta">Go to Secure Checkout</button>
