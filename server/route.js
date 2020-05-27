@@ -24,25 +24,23 @@ app.use(bodyParser.json());
 
 
 app.get('/', async (req, res) => {
-    const DBdata = await pool.query(categories());
-    res.json(DBdata.rows);
-  });
-
-//app.get('/products', async (req, res) => {
-  //let result = [];
-  //categoryName.map(async item => {
-    //let DBdata = await pool.query(productInfo(item));
-    //result.push(DBdata.rows);
-  //})
-  //console.log(result)
-  //res.json(result)
-//})  
+  const DBdata = await pool.query(categories());
+  res.json(DBdata.rows);
+});
 
 app.get('/products/:product', async (req, res) => {
   const product = req.params.product;
   const DBdata = await pool.query(productInfo(product))
   res.json(DBdata.rows);
-  });
+});
+
+app.post('/products/orderd', async (req, res) => {
+  const products = await req.body.products;
+  const information = await req.body.information;
+  console.log(products, information);
+})
+
+
 
 imagesName.map(item => app.get(`/images/${item}`, (req, res) => {
   res.sendFile(`${dir}/${item}.jpg`);

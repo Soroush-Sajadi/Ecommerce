@@ -16,9 +16,9 @@ export default class App extends Component {
     this.state = {
       productRoute: null,
       selectedProductInfo :[],
+      productsToDb:[]
     }
   }
- 
 
   getProductRoute = (childData) => {
     this.setState({productRoute: childData})
@@ -35,14 +35,12 @@ export default class App extends Component {
   } else {
     let filteredArray = this.state.selectedProductInfo.filter(item => item.id !== id)
     this.setState({selectedProductInfo: filteredArray});
-  }
+    }
   }
 
   deleteTheProps = (childData) => {
     this.setState({ selectedProductInfo: childData })
   }
-
-  
 
   render() {
     return (
@@ -57,7 +55,7 @@ export default class App extends Component {
             <Route exact path="/produkter" render={() => <Produkter routeName={this.getProductRoute}/>}/>
             <Route path="/omoss" render={() => <Omoss/>}/>
             <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} />} />
-            <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} />} />
+            <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} toDataBase={this.getproductFromCartToDb} />} />
             <Route path={"/produkter/checkout"} render={() => <Checkout />} />
           </Switch>
         </>

@@ -10,11 +10,13 @@ export default class Omoss extends Component {
                 name: null,
                 familyName: null,
                 email: null,
+                email2: null,
                 address: null,
                 city: null,
                 postalCode: null,
                 phone: null
             }],
+            products: []
         }
     }
 
@@ -33,8 +35,30 @@ export default class Omoss extends Component {
       this.setState({key: this.state.info[0][key] = value})
     }
 
+    
+
+
+    fetchData = async(products, information) => {
+      await fetch (`http://localhost:3000/products/orderd`, {
+        method: 'post',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          "products":products,
+          "information": information
+        })
+      })
+    }
+
     sendDataToDb = () => {
-      this.checkObjectHasData(this.state.info[0]);
+      if(this.checkObjectHasData(this.state.info[0])) {
+        if (this.state.info[0].email === this.state.info[0].email2) {
+        this.fetchData(this.state.info, JSON.parse(window.localStorage.getItem(`Cart`)));
+        } else {
+          console.log('mail is wrong')
+        }
+      } else {
+        console.log('not really')
+      }
     }
     render() {
       return (  

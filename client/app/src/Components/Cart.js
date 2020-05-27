@@ -37,7 +37,8 @@ export default class Produkter extends Component {
      setTimeout( ()=> {
       if (this.state.localData.length > 0 ) {
         for (let i in this.state.localData) {
-        this.setState( {quantity: this.state.localData[i].quantity = 1})
+        this.setState( {quantity: this.state.localData[i].quantity = '1'})
+        this.saveInLocalStorage( this.state.localData);
       }
     }
     }, 250 );
@@ -54,6 +55,7 @@ export default class Produkter extends Component {
       for (let i in this.state.localData) {
         if (id === this.state.localData[i].id) {
         this.setState( ({quantity: this.state.localData[i].quantity = quantityNew}));
+        this.saveInLocalStorage(this.state.localData);
         }
       }
       await this.prices(this.state.localData)
@@ -127,6 +129,7 @@ export default class Produkter extends Component {
       this.props.deleteProps(filteredArray)
     }
 
+
     render() {
       return ( 
       <main>
@@ -180,7 +183,7 @@ export default class Produkter extends Component {
           </div>
           <div className="summary-checkout">
           <NavLink to={"/produkter/checkout"}> 
-            <button className="checkout-cta">Checkout</button>
+            <button className="checkout-cta" >Checkout</button>
           </NavLink>  
           </div>
         </div>
