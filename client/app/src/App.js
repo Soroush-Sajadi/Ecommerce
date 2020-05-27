@@ -53,7 +53,7 @@ export default class App extends Component {
             <Header />
           </div>
           <Switch>
-            <Route exact path="/" render={() => <Hem/>}/>  
+            <Route exact path="/" render={() => <Hem/>}/>
             <Route exact path="/produkter" render={() => <Produkter routeName={this.getProductRoute}/>}/>
             <Route path="/omoss" render={() => <Omoss/>}/>
             <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} />} />
