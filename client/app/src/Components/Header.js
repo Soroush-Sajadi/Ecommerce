@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { NavLink } from 'react-router-dom';
+import cart from '../Images/cart.png'
 import './header.css';
 
 
@@ -12,14 +13,17 @@ export default class Header extends Component {
             <header className="header">
               <nav className="navigator">
                 <ul>
-                  <li>
-                    <NavLink to="/">HEM</NavLink>
+                  <li >
+                    <NavLink to="/" activeClassName="navbar__link--active">HEM</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/produkter">PRODUKTER</NavLink>
+                    <NavLink to="/produkter" activeClassName="navbar__link--active">PRODUKTER</NavLink>
                   </li>
                   <li>
-                    <NavLink to="omoss">OM OSS</NavLink>
+                    <NavLink to="/omoss" activeClassName="navbar__link--active">OM OSS</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/produkter/cart" > <img className="cart" src={cart}/></NavLink>
                   </li>
                 </ul>
                 </nav>   

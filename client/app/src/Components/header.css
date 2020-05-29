@@ -19,7 +19,9 @@
       height: 80px;
       border-bottom: 1px solid black;
     }
+
     
+  
     .navigator li {
       display: block;
       list-style: none;
@@ -32,8 +34,25 @@
       text-decoration: none;
       font-size: 15px;
     }
+
+    .navbar__link--active {
+      border-bottom: 3px solid #29b6f6;
+       transition: border-bottom .2s ease-in-out;
+    }
+   
+
+    a:hover {
+      border-bottom: 3px solid black ;
+    }
+    
     .brand {
         margin-top: 52px;
+    }
+
+    .cart {
+      height: 20px;
+      width: 34px;
+      cursor: pointer;
     }
   
   

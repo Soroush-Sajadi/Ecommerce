@@ -10,7 +10,6 @@ export default class Hem extends Component {
 
   constructor () {
     super ();
-
     this.state = {
       slideImages : [
         image,
@@ -30,24 +29,22 @@ export default class Hem extends Component {
       }
     }
   }
-   
- 
-   
-   
+
+
      render () {
       return (
         <div className="slide-container">
           <Slide {...this.state.properties}>
             <div className="each-slide">
-              <div style={{'backgroundImage': `url(${this.state.slideImages[0]}) `,'height': '400px'}}>
+              <div style={{'backgroundImage': `url(${this.state.slideImages[0]}) `,'height': '450px', 'marginTop': '50px'}}>
               </div>
             </div>
             <div className="each-slide">
-              <div style={{'backgroundImage': `url(${this.state.slideImages[1]})`,'height': '400px'}}>
+              <div style={{'backgroundImage': `url(${this.state.slideImages[1]})`,'height': '450px', 'marginTop': '50px'}}>
               </div>
             </div>
             <div className="each-slide">
-              <div style={{'backgroundImage': `url(${this.state.slideImages[2]})`,'height': '400px'}}>
+              <div style={{'backgroundImage': `url(${this.state.slideImages[2]})`,'height': '450px', 'marginTop': '50px'}}>
               </div>
             </div>
           </Slide>
