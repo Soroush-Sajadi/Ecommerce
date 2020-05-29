@@ -154,11 +154,11 @@ export default class Produkter extends Component {
               <p>Product Code - {item.id}</p>
             </div>
           </div>
-          <div className="price">{item.price}</div>
+          <div className="price">{item.price.split(' ')[0]}</div>
           <div className="quantity">
             <input type="number" onClick={this.getQuantity} price={item.price} idd={item.id} min="1"  max="99" id ="quantity-field"  className={item.id} />
           </div>
-          <div className="subtotal" >{Number(item.price.split(' ')[0]) * item.quantity} kr</div>
+          <div className="subtotal" >{Number(item.price.split(' ')[0]) * item.quantity} </div>
           <div className="remove">
             <button  id={item.id} name={item.name} quantity={item.quantity} price={item.price} onClick={this.removeFromCart}>Remove</button>
           </div>

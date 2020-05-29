@@ -9,7 +9,8 @@ require('dotenv').config();
 const {
     categories,
     productInfo,
-    allProducts
+    sendProductsToDb,
+    sendInformationToDb
   } = require("./DB/queries");
 const pool = require("./DB/index");
 const dir = path.join(__dirname, '/images/');
@@ -37,7 +38,15 @@ app.get('/products/:product', async (req, res) => {
 app.post('/products/orderd', async (req, res) => {
   const products = await req.body.products;
   const information = await req.body.information;
-  console.log(products, information);
+  console.log(products)
+  const id = uuidv4();
+  //products.map(async item => {
+    //await pool.query(sendProductsToDb(id, item, '21232' ))
+  //})
+  //information.map(async item => {
+    //await pool.query(sendInformationToDb(id, item, '22222'))
+  //})
+ 
 })
 
 
