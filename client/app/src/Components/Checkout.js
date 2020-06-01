@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import './Checkout.css'
 
 export default class Omoss extends Component {
@@ -19,6 +19,9 @@ export default class Omoss extends Component {
             }],
             products: [],
             savedInDb: false,
+            emaiError: false,
+            itsEmpty: false,
+            path: '',
         }
     }
 
@@ -51,33 +54,34 @@ export default class Omoss extends Component {
       })
     }
 
-    sendDataToDb = () => {
+    sendDataToDb = async () => {
       if(this.checkObjectHasData(this.state.info[0])) {
+        this.setState({itsEmpty: false});
         if (this.state.info[0].email === this.state.info[0].email2) {
-        this.fetchData(JSON.parse(window.localStorage.getItem(`Cart`)),this.state.info);
-        setTimeout(() => {
+          this.setState({emaiError: false})
+          this.fetchData(JSON.parse(window.localStorage.getItem(`Cart`)),this.state.info);
+          await this.setState({path: '/produkter'})
           this.setState({savedInDb: true});
-          this.changeState();
-        },500)
-        
         } else {
-          console.log('mail is wrong')
+          this.setState({emaiError: true});
         }
       } else {
-        console.log('not really')
+        this.setState({emaiError: false});
+        this.setState({itsEmpty: true});
       }
     }
 
-    changeState = ()=> {
-      this.setState({savedInDb: false})
-    }
+   
     render() {
-      console.log(this.state.savedInDb)
+      console.log(this.state.path)
       return (
       <>
         <h1>Elegant Contact Form</h1>
         <form className="cf">
           <div className="half left cf">
+            {this.state.emaiError === true ? <h3>Emails are not the same</h3>: null}
+            {this.state.itsEmpty === true ? <h3>Fill all the blanks</h3>: null}
+
             <input type="text" id="name" onChange={this.getInfo} placeholder="Namn"/>
             <input type="text" id="familyName" onChange={this.getInfo} placeholder="Efter Namn"/>
             <input type="email" id="email" onChange={this.getInfo} placeholder="Email address" />
@@ -87,7 +91,9 @@ export default class Omoss extends Component {
             <input type="email" id="postalCode" onChange={this.getInfo} placeholder="Postal Code" />
             <input type="text" id="phone" onChange={this.getInfo} placeholder="tele-phone" />
           </div>
-              <input type="submit" value="Submit" id="input-submit" onClick={this.sendDataToDb}/>
+            {this.state.savedInDb === true ?  <Redirect to={this.state.path}>
+              </Redirect>: null}
+            <input type="submit" value="Submit" id="input-submit" onClick={this.sendDataToDb} />
         </form>
       </>
       )

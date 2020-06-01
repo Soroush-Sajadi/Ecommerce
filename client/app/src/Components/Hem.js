@@ -26,10 +26,11 @@ export default class Hem extends Component {
         onChange: (oldIndex, newIndex) => {
           console.log(`slide transition from ${oldIndex} to ${newIndex}`);
         }
-      }
+      },
+      data: []
     }
   }
-
+  
 
      render () {
       return (
