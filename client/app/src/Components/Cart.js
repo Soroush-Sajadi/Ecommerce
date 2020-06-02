@@ -9,7 +9,8 @@ export default class Produkter extends Component {
         dataFromProduct : [],
         localData: [],
         totalPrice: [],
-        total: null
+        total: null,
+        lengthCart : 0,
 
       }
     }
@@ -129,31 +130,30 @@ export default class Produkter extends Component {
       this.props.deleteProps(filteredArray)
     }
 
-
     render() {
       return ( 
       <main>
-      <div className="basket">
-        <div className="basket-labels">
-          <ul>
-            <li className="item item-heading">Item</li>
-            <li className="price">Price</li>
-            <li className="quantity">Quantity</li>
-            <li className="subtotal">Subtotal</li>
-          </ul>
-        </div>
-        {this.state.localData.map(item => <div>
-        <div className="basket-product">
-          <div className="item">
-            <div className="product-image">
-              <img src={item.image} alt="Placholder Image 2" className="product-frame"/>
-            </div>
-            <div className="product-details">
-              <h1><strong><span className="item-quantity"></span>{item.name}</strong></h1>
-              <p><strong>Navy, Size 18</strong></p>
-              <p>Product Code - {item.id}</p>
-            </div>
+        <div className="basket">
+          <div className="basket-labels">
+            <ul>
+              <li className="item item-heading">Item</li>
+              <li className="price">Price</li>
+              <li className="quantity">Quantity</li>
+              <li className="subtotal">Subtotal</li>
+            </ul>
           </div>
+          {this.state.localData.map(item => <div>
+            <div className="basket-product">
+              <div className="item">
+                <div className="product-image">
+                  <img src={item.image} alt="Placholder Image 2" className="product-frame"/>
+                </div>
+                <div className="product-details">
+                  <h1><strong><span className="item-quantity"></span>{item.name}</strong></h1>
+                  <p><strong>Navy, Size 18</strong></p>
+                  <p>Product Code - {item.id}</p>
+                </div>
+              </div>
           <div className="price">{item.price.split(' ')[0]}</div>
           <div className="quantity">
             <input type="number" onClick={this.getQuantity} price={item.price} idd={item.id} min="1"  max="99" id ="quantity-field"  className={item.id} />
