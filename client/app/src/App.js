@@ -25,7 +25,11 @@ export default class App extends Component {
     this.setState({productRoute: childData})
   }
 
-  getLengthCart = (childData) => {
+  getLengthCartFromProduct = (childData) => {
+    this.setState({lengthOfCart: childData})
+  }
+
+  getLengthCartFromCart = (childData) => {
     this.setState({lengthOfCart: childData})
   }
 
@@ -59,8 +63,8 @@ export default class App extends Component {
             <Route exact path="/" render={() => <Hem/>}/>
             <Route exact path="/produkter" render={() => <Produkter routeName={this.getProductRoute}/>}/>
             <Route path="/omoss" render={() => <Omoss/>}/>
-            <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} getLengthCart={this.getLengthCart} />} />
-            <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} toDataBase={this.getproductFromCartToDb} />} />
+            <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} getLengthCart={this.getLengthCartFromProduct} />} />
+            <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} toDataBase={this.getproductFromCartToDb} getLengthCart={this.getLengthCartFromCart} />} />
             <Route path={"/produkter/checkout"} render={() => <Checkout />} />
           </Switch>
         </>

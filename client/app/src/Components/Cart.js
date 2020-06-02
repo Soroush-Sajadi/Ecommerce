@@ -11,7 +11,6 @@ export default class Produkter extends Component {
         totalPrice: [],
         total: null,
         lengthCart : 0,
-
       }
     }
     
@@ -88,10 +87,6 @@ export default class Produkter extends Component {
     const id = e.target.getAttribute('idd');
     const price = Number(e.target.getAttribute('price').split(' ')[0]);
     const totalPriceCart = price * newQuantity;
-    //this.setState({ totalPrice: this.state.totalPrice.splice(0, 0, totalPriceCart) }) 
-    
-    //this.getIndex(id, this.state.localData, totalPriceCart);
-
     this.changeQuantity(id, newQuantity)
   }
 
@@ -120,6 +115,15 @@ export default class Produkter extends Component {
     this.saveInProductStorage(name, this.state.dataFromProduct);
   }
 
+  changeCartLength = async() => {
+    await this.setState({ lengthCart: JSON.parse(window.localStorage.getItem(`LenghthOfCart`))});
+    this.setState({lengthCart: this.state.lengthCart -= 1});
+    this.props.getLengthCart(this.state.lengthCart);
+    window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthCart));
+
+
+  }
+
     removeFromCart = async (e) => {
       this.setState({ localData: JSON.parse(window.localStorage.getItem(`Cart`))});
       let filteredArray = this.state.localData.filter(item => item.id !== e.target.getAttribute('id'))
@@ -128,6 +132,7 @@ export default class Produkter extends Component {
       this.changingStatus( e.target.getAttribute('id'), e.target.getAttribute('name') )
       this.setState({total: this.state.total - (e.target.getAttribute('price').split(' ')[0] * Number(e.target.getAttribute('quantity')))})
       this.props.deleteProps(filteredArray)
+      this.changeCartLength();
     }
 
     render() {
