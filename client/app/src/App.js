@@ -16,12 +16,17 @@ export default class App extends Component {
     this.state = {
       productRoute: null,
       selectedProductInfo :[],
-      productsToDb:[]
+      productsToDb:[],
+      lengthOfCart: 0,
     }
   }
 
   getProductRoute = (childData) => {
     this.setState({productRoute: childData})
+  }
+
+  getLengthCart = (childData) => {
+    this.setState({lengthOfCart: childData})
   }
 
   getSelectedProduct = (childData, cartStatus, id ) => {
@@ -43,18 +48,19 @@ export default class App extends Component {
   }
 
   render() {
+    console.log(this.state.lengthOfCart)
     return (
       <div className="App">
         <BrowserRouter>
       <>
           <div>
-            <Header />
+            <Header lengthOfCart={this.state.lengthOfCart}/>
           </div>
           <Switch>
             <Route exact path="/" render={() => <Hem/>}/>
             <Route exact path="/produkter" render={() => <Produkter routeName={this.getProductRoute}/>}/>
             <Route path="/omoss" render={() => <Omoss/>}/>
-            <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} />} />
+            <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} getLengthCart={this.getLengthCart} />} />
             <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} toDataBase={this.getproductFromCartToDb} />} />
             <Route path={"/produkter/checkout"} render={() => <Checkout />} />
           </Switch>

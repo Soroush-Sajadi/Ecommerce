@@ -9,6 +9,7 @@ export default class Produkt extends Component {
       data : [] ,
       clicked: 'Remove from cart',
       localData: [],
+      lengthOfCart: 0
     }
   };
 
@@ -32,6 +33,36 @@ export default class Produkt extends Component {
 
   getTheLocalData = (name) => {
     return this.setState({ data: JSON.parse(window.localStorage.getItem(`${name}`))});
+  }
+
+  addLengthCart = async (value) => {
+    if (value === 'Add to the cart') {
+      if ( !JSON.parse(window.localStorage.getItem(`LenghthOfCart`))) {
+        this.setState({lengthOfCart: this.state.lengthOfCart += 1 });
+        this.props.getLengthCart(this.state.lengthOfCart)
+        window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthOfCart))
+      } else {
+        await this.setState({lengthOfCart: JSON.parse(window.localStorage.getItem(`LenghthOfCart`))})
+        this.setState({lengthOfCart: this.state.lengthOfCart += 1 });
+        this.props.getLengthCart(this.state.lengthOfCart)
+        window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthOfCart))
+      }
+    } else {
+      if ( !JSON.parse(window.localStorage.getItem(`LenghthOfCart`))) {
+        this.setState({lengthOfCart: this.state.lengthOfCart -= 1 });
+        this.props.getLengthCart(this.state.lengthOfCart)
+        window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthOfCart))
+      } else {
+        await this.setState({lengthOfCart: JSON.parse(window.localStorage.getItem(`LenghthOfCart`))})
+        this.setState({lengthOfCart: this.state.lengthOfCart -= 1 });
+        this.props.getLengthCart(this.state.lengthOfCart)
+        window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthOfCart))
+      }
+    }
+    
+   
+
+
   }
 
   changingStatus = (id) => {
@@ -67,6 +98,7 @@ export default class Produkt extends Component {
       image: e.target.getAttribute('image'),
       description: e.target.getAttribute('description'),
     }
+    this.addLengthCart(e.target.getAttribute('value'))
     this.changingStatus(e.target.getAttribute('id'))
     this.sendingProductToCart(selectedItem, e.target.getAttribute('value'), e.target.getAttribute('id'))
     

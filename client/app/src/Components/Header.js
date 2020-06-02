@@ -15,16 +15,15 @@ export default class Header extends Component {
 
 
   getTheLocalData = (name) => {
-    this.setState({ data: JSON.parse(window.localStorage.getItem(`${name}`))});
+    return this.setState({ data: JSON.parse(window.localStorage.getItem(`${name}`))});
   }
 
   componentDidMount = () => {
-    this.getTheLocalData('Cart');
+    this.getTheLocalData(`LenghthOfCart`)
   }
     
-      
+  
     render() {
-      console.log('CAAAART____',this.state.data)
       return (  
           <header className="header">
             <nav className="navigator">
