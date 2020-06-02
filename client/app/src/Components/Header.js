@@ -31,7 +31,7 @@ export default class Header extends Component {
           <NavLink to="/produkter/cart"  activeClassName="navbar__link--active" > 
           {this.props.lengthOfCart > 0 ? <img className="cart" src={cart}/>: null} 
           </NavLink>
-          <h1 className="cart-length" > {this.props.lengthOfCart > 0 ? this.props.lengthOfCart : null}</h1>
+          <h1 className="cart-length" style={ this.props.lengthOfCart > 0 ? {backgroundColor: 'red'}: null} > {this.props.lengthOfCart > 0 ? this.props.lengthOfCart : null}</h1>
           </nav>   
       </header>
     )
