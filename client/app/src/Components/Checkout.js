@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom';
 import './Checkout.css'
 
 export default class Omoss extends Component {
@@ -22,6 +22,7 @@ export default class Omoss extends Component {
             emaiError: false,
             itsEmpty: false,
             path: '',
+            id: null,
         }
     }
 
@@ -52,6 +53,8 @@ export default class Omoss extends Component {
           "information": information
         })
       })
+      .then(res => res.json())
+      .then(id => this.setState({ id }))
     }
 
     sendDataToDb = async () => {
@@ -59,8 +62,9 @@ export default class Omoss extends Component {
         this.setState({itsEmpty: false});
         if (this.state.info[0].email === this.state.info[0].email2) {
           this.setState({emaiError: false})
-          this.fetchData(JSON.parse(window.localStorage.getItem(`Cart`)),this.state.info);
-          await this.setState({path: '/produkter'})
+          await this.fetchData(JSON.parse(window.localStorage.getItem(`Cart`)),this.state.info);
+          await this.setState({path: `/produkter/confirmation/${this.state.id}`});
+          await this.props.getId(this.state.id);
           this.setState({savedInDb: true});
         } else {
           this.setState({emaiError: true});
@@ -73,7 +77,7 @@ export default class Omoss extends Component {
 
    
     render() {
-      console.log(this.state.path)
+      console.log()
       return (
       <>
         <h1>Elegant Contact Form</h1>

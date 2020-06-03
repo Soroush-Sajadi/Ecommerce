@@ -155,7 +155,7 @@ export default class Produkter extends Component {
                   <img src={item.image} alt="Placholder Image 2" className="product-frame"/>
                 </div>
                 <div className="product-details">
-                  <h1><strong><span className="item-quantity"></span>{item.name}</strong></h1>
+                  <h1 className="item-quantity"><strong><span className="item-quantity"></span>{item.name}</strong></h1>
                   <p><strong>Navy, Size 18</strong></p>
                   <p>Product Code - {item.id}</p>
                 </div>

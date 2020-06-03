@@ -7,6 +7,7 @@ import Header from './Components/Header';
 import Produkt from './Components/Produkt'
 import Cart from './Components/Cart'
 import Checkout from './Components/Checkout';
+import Confirmation from './Components/Confirmation';
 import './App.css';
 
 export default class App extends Component {
@@ -18,6 +19,7 @@ export default class App extends Component {
       selectedProductInfo :[],
       productsToDb:[],
       lengthOfCart: 0,
+      id : null,
     }
   }
 
@@ -51,6 +53,10 @@ export default class App extends Component {
     this.setState({ selectedProductInfo: childData })
   }
 
+  getIdConfirmation = (childData) => {
+    this.setState({id: childData})
+  }
+
   render() {
     return (
       <div className="App">
@@ -65,7 +71,8 @@ export default class App extends Component {
             <Route path="/omoss" render={() => <Omoss/>}/>
             <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} getLengthCart={this.getLengthCartFromProduct} />} />
             <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} toDataBase={this.getproductFromCartToDb} getLengthCart={this.getLengthCartFromCart} />} />
-            <Route path={"/produkter/checkout"} render={() => <Checkout />} />
+            <Route path={"/produkter/checkout"} render={() => <Checkout getId={this.getIdConfirmation} />} />
+            <Route path={`/produkter/confirmation/${this.state.id}`} render={() => <Confirmation userId={this.state.id} />} />
           </Switch>
         </>
         </BrowserRouter>

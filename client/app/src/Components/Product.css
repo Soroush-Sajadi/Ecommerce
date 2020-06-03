@@ -85,10 +85,8 @@ img {
 }
 .tillKassan li {
   color: black;
-  border: 1px solid;
-  padding: 8px;
+  padding: 2px;
   border-radius: 18px;
-  background: greenyellow;
   text-align: center;
   margin-left: 26%;
 }

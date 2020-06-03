@@ -137,11 +137,11 @@ export default class Produkt extends Component {
       </div>
       <div>
         <ul className="tillKassan">
+            <li>
+              <NavLink className="kassan" to={"/produkter/"}> Till backa </NavLink>
+            </li>
           <li>
-            <NavLink className="kassan" to={"/produkter/"}> Till backa </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/produkter/cart"}> Till Kassan </NavLink>
+            <NavLink to={"/produkter/cart"}> {this.state.lengthOfCart > 0 ? <h3>Till kassan</h3> : null } </NavLink>
           </li>
       </ul>
       </div>

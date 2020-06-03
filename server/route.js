@@ -46,7 +46,7 @@ app.post('/products/orderd', async (req, res) => {
   //information.map(async item => {
     //await pool.query(sendInformationToDb(id, item, '22222'))
   //})
- 
+  res.json(id);
 })
 
 
