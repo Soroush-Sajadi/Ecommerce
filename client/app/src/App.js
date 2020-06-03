@@ -57,6 +57,14 @@ export default class App extends Component {
     this.setState({id: childData})
   }
 
+  deleteCart = () => {
+    this.setState({ lengthOfCart: 0 })
+  }
+
+  deleteSelectedProduct = () => {
+    this.setState({selectedProductInfo: []})
+  }
+
   render() {
     return (
       <div className="App">
@@ -72,7 +80,7 @@ export default class App extends Component {
             <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} getLengthCart={this.getLengthCartFromProduct} />} />
             <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} toDataBase={this.getproductFromCartToDb} getLengthCart={this.getLengthCartFromCart} />} />
             <Route path={"/produkter/checkout"} render={() => <Checkout getId={this.getIdConfirmation} />} />
-            <Route path={`/produkter/confirmation/${this.state.id}`} render={() => <Confirmation userId={this.state.id} />} />
+            <Route path={`/produkter/confirmation/${this.state.id}`} render={() => <Confirmation userId={this.state.id} deleteCart={this.deleteCart} deleteSelectedProduct={this.deleteSelectedProduct} />} />
           </Switch>
         </>
         </BrowserRouter>

@@ -8,6 +8,8 @@ export default class Confirmation extends Component {
     
     componentDidMount = () => {
       this.clearLocalSrorage();
+      this.props.deleteCart()
+      this.props.deleteSelectedProduct()
     }
       
     render() {
