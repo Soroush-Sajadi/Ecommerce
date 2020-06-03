@@ -92,13 +92,23 @@ img {
 }
 
 .inputAddToCart {
-  background-color: red;
+  /*background-color: #0c948a;*/
+  background-color: #29b6f6;
+
+  
+  
 
 }
 .inputRemoveFromCart {
-  background-color: greenyellow;
- 
+  background-image:url(../Images/trash1.png); 
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+
+  
 }
+
 .kassan {
   
 }

@@ -32,7 +32,6 @@ export default class Omoss extends Component {
           return false;
       }
       return true;
-        
     }
 
     getInfo = (e) => {
@@ -40,9 +39,6 @@ export default class Omoss extends Component {
       let key = e.target.id
       this.setState({key: this.state.info[0][key] = value})
     }
-
-    
-
 
     fetchData = async(products, information) => {
       await fetch (`http://localhost:3000/products/orderd`, {
@@ -66,6 +62,7 @@ export default class Omoss extends Component {
           await this.setState({path: `/produkter/confirmation/${this.state.id}`});
           await this.props.getId(this.state.id);
           this.setState({savedInDb: true});
+          this.props.buyerName(this.state.info[0].name)
         } else {
           this.setState({emaiError: true});
         }
@@ -75,7 +72,6 @@ export default class Omoss extends Component {
       }
     }
 
-   
     render() {
       console.log()
       return (
@@ -85,7 +81,6 @@ export default class Omoss extends Component {
           <div className="half left cf">
             {this.state.emaiError === true ? <h3>Emails are not the same</h3>: null}
             {this.state.itsEmpty === true ? <h3>Fill all the blanks</h3>: null}
-
             <input type="text" id="name" onChange={this.getInfo} placeholder="Namn"/>
             <input type="text" id="familyName" onChange={this.getInfo} placeholder="Efter Namn"/>
             <input type="email" id="email" onChange={this.getInfo} placeholder="Email address" />

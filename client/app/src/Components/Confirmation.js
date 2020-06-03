@@ -16,6 +16,9 @@ export default class Confirmation extends Component {
       return (  
           <div >
             <h1 className="confirm">Way to go its done!</h1>
+            <h1 className="confirm">Tack {this.props.buyerName}!</h1>
+            <h1 className="confirm">Your code is {this.props.userId}</h1>
+
           </div>
       )
   }

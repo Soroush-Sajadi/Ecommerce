@@ -194,7 +194,6 @@ export default class Produkter extends Component {
           </div>
         </div>
       </aside>
-    
   </main>
       )
   }

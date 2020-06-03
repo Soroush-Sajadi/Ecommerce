@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import { NavLink } from 'react-router-dom';
+import trash from '../Images/trash.png';
+import trashL from '../Images/trash1.png'
 import './Product.css'
 
 export default class Produkt extends Component {
@@ -120,7 +122,8 @@ export default class Produkt extends Component {
               <li className="description">{item.description} </li>
             </ul>
 
-              <input className={item.checked === false ? 'inputAddToCart' : 'inputRemoveFromCart'} type="Submit" value={item.checked === false ? 'Add to the cart' : 'Remove from cart' }
+              <input className={item.checked === false ? 'inputAddToCart' : 'inputRemoveFromCart'} type="Submit" 
+              value={item.checked === false ? 'Add to the cart' : '' }
                 name={item.product_name}
                 id={item.id}
                 checked={item.checked}
@@ -129,7 +132,8 @@ export default class Produkt extends Component {
                 size={item.size}
                 image={item.image1}
                 description={item.description}
-                onClick={this.selectedProduct}/>
+                onClick={this.selectedProduct} 
+                />
           </div>
         </div>
       </div>
