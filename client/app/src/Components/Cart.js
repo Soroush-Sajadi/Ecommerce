@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import './Cart.css'
 
 export default class Produkter extends Component {
@@ -118,8 +118,9 @@ export default class Produkter extends Component {
   changeCartLength = async() => {
     await this.setState({ lengthCart: JSON.parse(window.localStorage.getItem(`LenghthOfCart`))});
     this.setState({lengthCart: this.state.lengthCart -= 1});
-    this.props.getLengthCart(this.state.lengthCart);
     window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthCart));
+    this.props.getLengthCart(this.state.lengthCart);
+   
 
 
   }
@@ -193,6 +194,7 @@ export default class Produkter extends Component {
           </div>
         </div>
       </aside>
+    
   </main>
       )
   }

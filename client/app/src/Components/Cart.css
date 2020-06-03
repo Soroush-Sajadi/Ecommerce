@@ -95,6 +95,7 @@ main {
   overflow: hidden;
   padding: 1rem 0;
   width: 960px;
+  margin-top: 50px;
 }
 
 .basket,

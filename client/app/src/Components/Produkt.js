@@ -39,30 +39,26 @@ export default class Produkt extends Component {
     if (value === 'Add to the cart') {
       if ( !JSON.parse(window.localStorage.getItem(`LenghthOfCart`))) {
         this.setState({lengthOfCart: this.state.lengthOfCart += 1 });
-        this.props.getLengthCart(this.state.lengthOfCart)
         window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthOfCart))
+        this.props.getLengthCart(this.state.lengthOfCart)
       } else {
         await this.setState({lengthOfCart: JSON.parse(window.localStorage.getItem(`LenghthOfCart`))})
         this.setState({lengthOfCart: this.state.lengthOfCart += 1 });
-        this.props.getLengthCart(this.state.lengthOfCart)
         window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthOfCart))
+        this.props.getLengthCart(this.state.lengthOfCart)
       }
     } else {
       if ( !JSON.parse(window.localStorage.getItem(`LenghthOfCart`))) {
         this.setState({lengthOfCart: this.state.lengthOfCart -= 1 });
-        this.props.getLengthCart(this.state.lengthOfCart)
         window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthOfCart))
+        this.props.getLengthCart(this.state.lengthOfCart)
       } else {
         await this.setState({lengthOfCart: JSON.parse(window.localStorage.getItem(`LenghthOfCart`))})
         this.setState({lengthOfCart: this.state.lengthOfCart -= 1 });
-        this.props.getLengthCart(this.state.lengthOfCart)
         window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthOfCart))
+        this.props.getLengthCart(this.state.lengthOfCart)
       }
     }
-    
-   
-
-
   }
 
   changingStatus = (id) => {

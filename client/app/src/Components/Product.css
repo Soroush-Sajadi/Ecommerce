@@ -6,7 +6,7 @@ body {
   display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 75px;
+    margin-top: 95px;
 }
 
 .flip-card {
