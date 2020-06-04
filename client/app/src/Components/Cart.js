@@ -194,6 +194,7 @@ export default class Produkter extends Component {
           </div>
         </div>
       </aside>
+      {this.props.lengthCart === 0 ? <Redirect to="/produkter"></Redirect>: null}
   </main>
       )
   }
