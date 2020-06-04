@@ -65,6 +65,7 @@ export default class Produkt extends Component {
     }
   }
 
+  
   changingStatus = (id) => {
     for (let i in this.state.data) {
       if (id === this.state.data[i].id) {
@@ -75,15 +76,15 @@ export default class Produkt extends Component {
   }
 
 
-  componentDidMount = (prevProps) => {
+  componentDidMount = () => {
     if (!(JSON.parse(window.localStorage.getItem(`${this.props.produktName}`)))) {
       this.getData(this.props.produktName);
     } else {
-        this.getTheLocalData(this.props.produktName);
+      console.log('else')
+      this.getTheLocalData(this.props.produktName);
     }
   }
 
-  
   sendingProductToCart = (selectedItem, cartStatus, id ) => {
     return this.props.selectedProduct(selectedItem, cartStatus, id);
   }
@@ -93,7 +94,7 @@ export default class Produkt extends Component {
       id : e.target.getAttribute('id'),
       name: e.target.getAttribute('name'),
       color: e.target.getAttribute('color'),
-      price: e.target.getAttribute('price'),
+      price: e.target.getAttribute('price').split(' ')[0],
       size: e.target.getAttribute('size'),
       image: e.target.getAttribute('image'),
       description: e.target.getAttribute('description'),
@@ -106,6 +107,7 @@ export default class Produkt extends Component {
   }
 
   render() {
+    //console.log(this.props.produktName)
     return ( 
       <>
       {this.state.data.length === 0 ? <div className="loading"> <Spinner color="red" size={200} /></div> : null}

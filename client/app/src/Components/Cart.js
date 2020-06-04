@@ -115,14 +115,11 @@ export default class Produkter extends Component {
     this.saveInProductStorage(name, this.state.dataFromProduct);
   }
 
-  changeCartLength = async() => {
+  changeCartLength = async () => {
     await this.setState({ lengthCart: JSON.parse(window.localStorage.getItem(`LenghthOfCart`))});
     this.setState({lengthCart: this.state.lengthCart -= 1});
     window.localStorage.setItem(`LenghthOfCart`, JSON.stringify(this.state.lengthCart));
     this.props.getLengthCart(this.state.lengthCart);
-   
-
-
   }
 
     removeFromCart = async (e) => {
@@ -194,7 +191,7 @@ export default class Produkter extends Component {
           </div>
         </div>
       </aside>
-      {this.props.lengthCart === 0 ? <Redirect to="/produkter"></Redirect>: null}
+      {JSON.parse(window.localStorage.getItem(`Cart`)).length === 0 ? <Redirect to="/produkter"></Redirect>: null}
   </main>
       )
   }

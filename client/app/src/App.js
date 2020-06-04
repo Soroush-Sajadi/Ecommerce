@@ -36,19 +36,25 @@ export default class App extends Component {
     this.setState({lengthOfCart: childData})
   }
 
-  getSelectedProduct = (childData, cartStatus, id ) => {
+  getSelectedProduct =  (childData, cartStatus, id ) => {
     if (cartStatus === 'Add to the cart') {
-    this.setState(state => {
-      const selectedProductInfo = state.selectedProductInfo.concat(childData)
+    this.setState( state => {
+       const selectedProductInfo = state.selectedProductInfo.concat(childData)
+       window.localStorage.setItem(`Cart`, JSON.stringify(selectedProductInfo))
       return {
         selectedProductInfo
       };
     }) 
   } else {
-    let filteredArray = this.state.selectedProductInfo.filter(item => item.id !== id)
-    this.setState({selectedProductInfo: filteredArray});
+    let filteredArray =  this.state.selectedProductInfo.filter(item => item.id !== id)
+     this.setState({selectedProductInfo: filteredArray});
+     window.localStorage.setItem(`Cart`, JSON.stringify(filteredArray))
+
     }
   }
+
+ 
+  
 
   deleteTheProps = (childData) => {
     this.setState({ selectedProductInfo: childData })
@@ -89,11 +95,7 @@ export default class App extends Component {
           </Switch>
         </>
         </BrowserRouter>
-        <footer>
-          <div className="footer">
-
-          </div>
-        </footer>
+        
       </div>
     );
   }

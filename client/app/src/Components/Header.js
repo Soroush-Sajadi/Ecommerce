@@ -17,7 +17,6 @@ export default class Header extends Component {
 
   saveDataInState = async () => {
     if (this.props.lengthOfCart === 0) {
-      console.log('here')
       await this.getTheLocalData('LenghthOfCart')
     } else {
       await this.setState({data: this.props.lengthOfCart})
@@ -35,7 +34,6 @@ export default class Header extends Component {
   }
 
   render() {
-    console.log(this.state.data)
     return (
       <header className="header">
         <nav className="navigator">
