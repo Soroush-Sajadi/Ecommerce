@@ -85,9 +85,9 @@ export default class Omoss extends Component {
             <input type="text" id="familyName" onChange={this.getInfo} placeholder="Efter Namn"/>
             <input type="email" id="email" onChange={this.getInfo} placeholder="Email address" />
             <input type="email" id="email2" onChange={this.getInfo} placeholder="Repeat Email address" />
-            <input type="email" id="address" onChange={this.getInfo} placeholder="Address" />
-            <input type="email" id="city" onChange={this.getInfo} placeholder="City" />
-            <input type="email" id="postalCode" onChange={this.getInfo} placeholder="Postal Code" />
+            <input type="text" id="address" onChange={this.getInfo} placeholder="Address" />
+            <input type="text" id="city" onChange={this.getInfo} placeholder="City" />
+            <input type="text" id="postalCode" onChange={this.getInfo} placeholder="Postal Code" />
             <input type="text" id="phone" onChange={this.getInfo} placeholder="tele-phone" />
           </div>
             {this.state.savedInDb === true ?  <Redirect to={this.state.path}>

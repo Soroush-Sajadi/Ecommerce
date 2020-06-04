@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import { NavLink } from 'react-router-dom';
-import trash from '../Images/trash.png';
-import trashL from '../Images/trash1.png'
+import { Spinner } from 'react-spinners-css';
 import './Product.css'
+ 
+
+    
 
 export default class Produkt extends Component {
   constructor() {
@@ -106,6 +108,7 @@ export default class Produkt extends Component {
   render() {
     return ( 
       <>
+      {this.state.data.length === 0 ? <div className="loading"> <Spinner color="red" size={200} /></div> : null}
       <div className="wraper-card">
       {this.state.data.map(item => 
       <div className="flip-card">

@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import { NavLink } from 'react-router-dom';
+import { Spinner } from 'react-spinners-css';
+
 import './Category.css'
 
 export default class Produkter extends Component {
@@ -30,6 +32,8 @@ export default class Produkter extends Component {
 
       render() {
         return (  
+          <>
+          {this.state.data.length === 0 ? <div className="loading"> <Spinner color="red" size={200} /></div> : null}
             <div className="category-card-wraper">
               {this.state.data.map(item => <div className="category-card">
                 <NavLink to={"/produkter/" + item.category_name}><img className="category-image" src={item.image} attr={item.category_name} onClick={this.getName} /></NavLink>
@@ -37,6 +41,7 @@ export default class Produkter extends Component {
               </div>
                 )}
             </div>
+            </>
         )
     }
 }
