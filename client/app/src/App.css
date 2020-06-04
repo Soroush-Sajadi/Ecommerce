@@ -1,7 +1,10 @@
 body {
-  background-image:url(../src/Images/cool-background.svg);
-  background-size: 100% 100%;
+  background-image:url(../src/Images/coolBackground.png);
+  background-repeat: space;
+  background-size: auto;
   background-position: left;
+
+
 }
 
 .footer {
