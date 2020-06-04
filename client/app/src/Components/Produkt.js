@@ -80,7 +80,6 @@ export default class Produkt extends Component {
     if (!(JSON.parse(window.localStorage.getItem(`${this.props.produktName}`)))) {
       this.getData(this.props.produktName);
     } else {
-      console.log('else')
       this.getTheLocalData(this.props.produktName);
     }
   }
