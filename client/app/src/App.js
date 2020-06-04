@@ -89,7 +89,11 @@ export default class App extends Component {
           </Switch>
         </>
         </BrowserRouter>
-        
+        <footer>
+          <div className="footer">
+
+          </div>
+        </footer>
       </div>
     );
   }

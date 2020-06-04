@@ -3,7 +3,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 70px;
+    margin-top: 105px;
 }
 .category-card {
     transition: transform .4s;

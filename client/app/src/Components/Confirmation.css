@@ -1,3 +1,15 @@
-.confirm {
-    margin-top: 90px;
+.confirm1 {
+    font-size: 45px;
+}
+.confirm-wraper {
+    margin-top: 24%;
+}
+
+.confirm{
+    font-size: 20px;
+    margin-top: 20px;
+    color: #652e2e;
+}
+.home-button {
+    
 }
