@@ -88,7 +88,7 @@ export default class App extends Component {
             <Route exact path="/" render={() => <Hem/>}/>
             <Route exact path="/produkter" render={() => <Produkter routeName={this.getProductRoute}/>}/>
             <Route path="/omoss" render={() => <Omoss/>}/>
-            <Route exact path={"/produkter/" + this.state.productRoute} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} getLengthCart={this.getLengthCartFromProduct} />} />
+            <Route exact path={`/produkter/${ this.state.productRoute !== null ? this.state.productRoute : JSON.parse(window.localStorage.getItem(`produc-name`))}`} render={() => <Produkt produktName={this.state.productRoute} selectedProduct={this.getSelectedProduct} getLengthCart={this.getLengthCartFromProduct} />} />
             <Route path={"/produkter/cart"} render={() => <Cart cartInfo={this.state.selectedProductInfo} deleteProps={this.deleteTheProps} toDataBase={this.getproductFromCartToDb} getLengthCart={this.getLengthCartFromCart} lengthCart={this.state.lengthOfCart} />} />
             <Route path={"/produkter/checkout"} render={() => <Checkout getId={this.getIdConfirmation} buyerName={this.getBuyerName} />} />
             <Route path={`/produkter/confirmation/${this.state.id}`} render={() => <Confirmation buyerName={this.state.buyerName} userId={this.state.id} deleteCart={this.deleteCart} deleteSelectedProduct={this.deleteSelectedProduct} />} />

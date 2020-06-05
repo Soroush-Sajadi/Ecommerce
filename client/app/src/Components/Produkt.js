@@ -77,12 +77,13 @@ export default class Produkt extends Component {
 
 
   componentDidMount = () => {
-    if (!(JSON.parse(window.localStorage.getItem(`${this.props.produktName}`)))) {
+    if (this.props.produktName !== null) {
       this.getData(this.props.produktName);
     } else {
-      this.getTheLocalData(this.props.produktName);
+      this.getData(JSON.parse(window.localStorage.getItem(`produc-name`)));
     }
   }
+
 
   sendingProductToCart = (selectedItem, cartStatus, id ) => {
     return this.props.selectedProduct(selectedItem, cartStatus, id);
@@ -106,7 +107,6 @@ export default class Produkt extends Component {
   }
 
   render() {
-    //console.log(this.props.produktName)
     return ( 
       <>
       {this.state.data.length === 0 ? <div className="loading"> <Spinner color="red" size={200} /></div> : null}
